@@ -25,7 +25,6 @@ export default {
   },
   watch: {
     query() {
-      console.log('watch on search input');
       this.title = this.query.s || '';
     },
   },

@@ -39,4 +39,4 @@ function getPaginator({ postPerPage, totalItems, offset, currentIndex }) {
   return paginator;
 }
 
-export { getPaginator };
+export { getPaginator, getLastPage };
