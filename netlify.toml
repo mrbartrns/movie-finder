@@ -3,9 +3,6 @@
     functions = "functions"
     publish = "dist"
 
-[build.environment]
-    API_KEY = "7035c60c"
-
 [dev]
     framework = "#custom"
     command = "yarn start"
