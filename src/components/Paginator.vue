@@ -20,11 +20,7 @@
         {{ page }}
       </RouterLink>
     </li>
-    <li
-      :class="`page-item ${
-        currentIndex >= paginator[paginator.length - 1] ? 'disabled' : ''
-      }`"
-    >
+    <li :class="`page-item ${currentIndex >= lastPage ? 'disabled' : ''}`">
       <RouterLink
         class="page-link"
         :to="`${baseUrl}${currentIndex + 1}`"
@@ -35,7 +31,7 @@
   </ul>
 </template>
 <script>
-import { getPaginator } from '@/utils/Paginator';
+import { getPaginator, getLastPage } from '@/utils/Paginator';
 export default {
   props: {
     totalItems: {
@@ -67,6 +63,9 @@ export default {
         postPerPage: this.postPerPage,
         currentIndex: this.currentIndex,
       });
+    },
+    lastPage() {
+      return getLastPage(this.totalItems, this.postPerPage);
     },
   },
 };
