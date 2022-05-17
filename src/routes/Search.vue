@@ -18,18 +18,18 @@
             class="search-results__item"
           >
             <RouterLink :to="`/movie/${movie.imdbID}`">
-              <div class="poster-viewer">
-                <div class="poster-viewer__img">
+              <div class="movie-card">
+                <div class="movie-card__img">
                   <img
                     v-if="movie.Poster !== 'N/A'"
                     :src="movie.Poster"
                   />
                 </div>
-                <div class="poster-viewer__content">
-                  <h3 class="poster-viewer__content__title">
+                <div class="movie-card__content">
+                  <h3 class="movie-card__content__title">
                     {{ movie.Title }}
                   </h3>
-                  <div class="poster-viewer__content__description">
+                  <div class="movie-card__content__description">
                     <div>{{ movie.Year }}년</div>
                     <div>{{ movie.Type }}</div>
                   </div>
@@ -123,7 +123,7 @@ export default {
   margin-top: 2rem;
 }
 
-.poster-viewer {
+.movie-card {
   @include mixins.defaultBoxDesign($radius: 0.25rem);
   height: 200px;
 
