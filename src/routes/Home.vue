@@ -22,7 +22,6 @@ export default {
     SearchInput,
     SearchInputWrapper,
   },
-  created() {},
 };
 </script>
 <style

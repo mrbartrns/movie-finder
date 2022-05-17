@@ -9,8 +9,8 @@ const instance = axios.create({
 });
 
 const API_DEFAULT_PARAMS = {
-  // apikey: process.env.API_KEY,
-  apikey: '7035c60c',
+  apikey: process.env.API_KEY,
+  // apikey: '7035c60c',
 };
 
 export { API_DEFAULT_PARAMS };

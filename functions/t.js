@@ -4,6 +4,7 @@ exports.handler = async function () {
     body: JSON.stringify({
       name: 't',
       age: 85,
+      test: true,
     }),
   };
 };
