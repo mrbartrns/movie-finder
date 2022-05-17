@@ -1,0 +1,40 @@
+@use './_vars.scss' as vars;
+
+@mixin flexBox($justify: null, $align: null, $wrap: nowrap, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+  flex-direction: $direction;
+}
+
+@mixin defaultBoxDesign($radius: 24px, $m: 0, $p: 0) {
+  @include flexBox();
+  border: 1px solid vars.$gray;
+  border-radius: $radius;
+  margin: $m;
+  padding: $p;
+
+  &:hover {
+    border-color: rgba(223, 225, 229, 0);
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: #{vars.$breakpoint-mobile--l - 1}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: #{vars.$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin labtop {
+  @media screen and (max-width: #{vars.$breakpoint-laptop - 1px}) {
+    @content;
+  }
+}
