@@ -1,9 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const dotenv = require('dotenv').config();
+const DotenvPlugin = require('dotenv-webpack');
 
 module.exports = {
   resolve: {
@@ -42,7 +41,7 @@ module.exports = {
         },
       ],
     }),
-    new webpack.EnvironmentPlugin(Object.keys(dotenv.parsed || {})),
+    new DotenvPlugin(),
   ],
   devServer: {
     port: 3000,
