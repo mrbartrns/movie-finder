@@ -41,7 +41,9 @@ module.exports = {
         },
       ],
     }),
-    new DotenvPlugin(),
+    new DotenvPlugin({
+      systemvars: true,
+    }),
   ],
   devServer: {
     port: 3000,
