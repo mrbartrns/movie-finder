@@ -22,7 +22,9 @@ export default {
     SearchInput,
     SearchInputWrapper,
   },
-  created() {},
+  created() {
+    console.log(process.env.API_KEY);
+  },
 };
 </script>
 <style
