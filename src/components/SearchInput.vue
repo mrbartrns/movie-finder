@@ -22,6 +22,9 @@ export default {
     query() {
       return this.$route.query;
     },
+    nomalizedTitle() {
+      return this.title.trim().replace(/\s+/g, ' ');
+    },
   },
   watch: {
     query() {
@@ -32,9 +35,8 @@ export default {
     this.title = this.query.s || '';
   },
   methods: {
-    // TODO: 추가로 더 추상화할 여지가 있음
     onSubmit() {
-      this.$router.push(`/search?s=${this.title}&page=1`);
+      this.$router.push(`/search?s=${this.nomalizedTitle}&page=1`);
     },
   },
 };
