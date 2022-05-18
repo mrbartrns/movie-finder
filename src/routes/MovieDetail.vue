@@ -14,12 +14,14 @@
         <div class="movie__content">
           <h1 class="movie__title">{{ movie.Title }}</h1>
           <div class="movie__ratings">
-            <h2
+            <ScoreBoard
               v-for="item in movie.Ratings"
               :key="item.Source"
+              :class="alias[item.Source][0]"
             >
-              {{ item.Source }}: {{ item.Value }}
-            </h2>
+              <template #score>{{ item.Value }}</template>
+              <template #company>{{ alias[item.Source][1] }}</template>
+            </ScoreBoard>
           </div>
           <div class="movie__info">
             <div class="movie__info__item">
@@ -44,12 +46,18 @@
 import movieService from '@/services/movie';
 import Container from '@/components/Container';
 import Loading from '@/components/Loading';
+import ScoreBoard from '@/components/ScoreBoard';
 
 export default {
-  components: { Container, Loading },
+  components: { Container, Loading, ScoreBoard },
   data() {
     return {
       movie: {},
+      alias: {
+        'Internet Movie Database': ['imdb', 'IMDB'],
+        'Rotten Tomatoes': ['rotten-tomatoes', 'Rotten Tomatoes'],
+        Metacritic: ['metacritic', 'Metacritic'],
+      },
     };
   },
   computed: {
@@ -61,7 +69,6 @@ export default {
     },
   },
   created() {
-    // TODO: plot 부분 추후 설정 가능하게 변경
     this.fetchData();
   },
   methods: {
@@ -98,7 +105,6 @@ export default {
 
   &__poster {
     flex: 1;
-    display: block;
   }
 
   &__content {
@@ -107,6 +113,8 @@ export default {
   }
 
   &__ratings {
+    @include mixins.flexBox($wrap: wrap);
+    gap: 1rem;
     margin: 1.5rem 0;
   }
 
