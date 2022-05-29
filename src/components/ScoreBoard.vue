@@ -13,9 +13,7 @@
 
 .score-board {
   flex-basis: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  @include mixins.flexBox($direction: column, $justify: center, $align: center);
   align-items: center;
   text-align: center;
   height: 120px;
