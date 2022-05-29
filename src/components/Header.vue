@@ -20,10 +20,11 @@ export default {
   lang="scss"
   scoped
 >
+@use '@/scss/_mixins.scss' as mixins;
+@use '@/scss/_vars.scss' as vars;
+
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flexBox($justify: center, $align: center);
   position: sticky;
   top: 0;
   z-index: 9;
