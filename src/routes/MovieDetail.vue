@@ -24,17 +24,18 @@
             </ScoreBoard>
           </div>
           <div class="movie__info">
-            <div class="movie__info__item">
-              Released at: {{ movie.Released }}
-            </div>
-            <div class="movie__info__item">장르: {{ movie.Genre }}</div>
-            <div class="movie__info__item">런타임: {{ movie.Runtime }}</div>
-            <div class="movie__info__item">{{ movie.Awards }}</div>
-            <div class="movie__info__item">감독: {{ movie.Director }}</div>
-            <div class="movie__info__item">작가: {{ movie.Writer }}</div>
-            <div class="movie__info__item">출연진: {{ movie.Actors }}</div>
+            <template v-if="movie !== {} && !isLoading">
+              <MovieItem
+                v-for="item in info"
+                :key="item[0]"
+                :movie-info="item"
+              />
+            </template>
           </div>
-          <div class="movie__plot">
+          <div
+            v-if="movie.Plot && movie.Plot !== 'N/A'"
+            class="movie__plot"
+          >
             {{ movie.Plot }}
           </div>
         </div>
@@ -47,9 +48,10 @@ import movieService from '@/services/movie';
 import Container from '@/components/Container';
 import Loading from '@/components/Loading';
 import ScoreBoard from '@/components/ScoreBoard';
+import MovieItem from '@/components/MovieItem';
 
 export default {
-  components: { Container, Loading, ScoreBoard },
+  components: { Container, Loading, ScoreBoard, MovieItem },
   data() {
     return {
       movie: {},
@@ -57,6 +59,15 @@ export default {
         'Internet Movie Database': ['imdb', 'IMDB'],
         'Rotten Tomatoes': ['rotten-tomatoes', 'Rotten Tomatoes'],
         Metacritic: ['metacritic', 'Metacritic'],
+      },
+      infoAlias: {
+        Released: 'Released at',
+        Genre: '장르',
+        Runtime: '런타임',
+        Awards: '수상',
+        Director: '감독',
+        Writer: '작가',
+        Actors: '출연진',
       },
     };
   },
@@ -66,6 +77,11 @@ export default {
     },
     isLoading() {
       return this.$store.state.isLoading;
+    },
+    info() {
+      return Object.keys(this.infoAlias).map((key) => {
+        return [this.infoAlias[key], this.movie[key]];
+      });
     },
   },
   created() {
